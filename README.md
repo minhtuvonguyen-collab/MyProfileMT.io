@@ -1,1 +1,238 @@
-# MyProfileMT.io
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trang cá nhân — Minh Tú</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------------------------ GLOBAL ------------------------------------ */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: #4b2d75;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    /* Gradient đổi màu liên tục */
+    background: linear-gradient(135deg, #faf5ff, #f3e8ff, #fdf4ff);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+header {
+    padding: 50px 20px 20px;
+    position: relative;
+    z-index: 3;
+}
+header img.icon {
+    width: 90px;
+}
+h1 {
+    font-size: 36px;
+    margin: 12px 0 0;
+}
+.subtitle {
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+/* ------------------------------------ SPARKLE BACKGROUND ------------------------------------ */
+.sparkles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+.sparkles span {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(1px);
+}
+
+/* ------------------------------------ CARD ------------------------------------ */
+.card {
+    width: 90%;
+    max-width: 750px;
+    margin: 40px auto;
+    background: #ffffffcc;
+    padding: 30px 40px 40px;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    backdrop-filter: blur(8px);
+
+    /* Fade-up */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: .9s ease;
+}
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------------ AVATAR ------------------------------------ */
+.avatar {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+
+    /* Neon tím + hiệu ứng nhịp */
+    box-shadow: 
+        0 0 12px #c084fc,
+        0 0 20px #d8b4fe,
+        0 0 40px #e9d5ff;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 10px #d8b4fe, 0 0 25px #c084fc; }
+    50% { box-shadow: 0 0 25px #e9d5ff, 0 0 45px #d8b4fe; }
+    100% { box-shadow: 0 0 10px #d8b4fe, 0 0 25px #c084fc; }
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------------ BUTTON ------------------------------------ */
+.play-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b2d75;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+    transition: 0.25s ease;
+}
+.play-btn:hover {
+    transform: scale(1.08);
+}
+
+/* ------------------------------------ MENU ------------------------------------ */
+.navbar {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.navbar button {
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: #f3e8ff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #5b318f;
+    transition: .25s;
+}
+.navbar button:hover {
+    background: #e9d5ff;
+    transform: scale(1.06);
+}
+
+/* ------------------------------------ FOOTER ------------------------------------ */
+footer {
+    text-align: center;
+    margin: 40px 0;
+    opacity: .7;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<!-- Hạt sáng -->
+<div class="sparkles" id="sparkles"></div>
+
+<header>
+    <img src="plant.png" class="icon">
+    <h1>Giới thiệu bản thân</h1>
+    <p class="subtitle">Trang cá nhân của Võ Nguyễn Minh Tú</p>
+</header>
+
+<div class="card" id="card">
+    <div class="avatar">
+        <img src="z7266046669069_8ee11924eac3c8593f8d8db1b2f4a8ef.jpg">
+    </div>
+
+    <h2 style="margin-top:18px;">Minh Tú</h2>
+    <p><i>Học sinh lớp 12 Anh — THPT Chuyên Bến Tre</i></p>
+
+    <p style="margin-top:22px;">
+        Xin chào! Mình là <b>Minh Tú</b>.  
+        Mình yêu thích học hỏi, khám phá và lan toả năng lượng tích cực đến mọi người.
+    </p>
+
+    <!-- NÚT NHẠC -->
+    <button class="play-btn" onclick="toggleMusic()">🎵 Nhạc nền</button>
+
+    <audio id="bgm" loop>
+        <source src="https://github.com/minhtuvonguyen-collab/MyProfileMT.io/blob/main/Aloha%2C%20Cool%20(English%20Cover).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MENU -->
+    <div class="navbar">
+        <button onclick="alert('Trang đang phát triển ❤️')">🌸 Trang chủ</button>
+        <button onclick="alert('Mục Sở thích đang cập nhật')">⭐ Sở thích</button>
+        <button onclick="alert('Mục Liên hệ đang cập nhật')">📮 Liên hệ</button>
+    </div>
+</div>
+
+<footer>© 2025 — Trang cá nhân của Minh Tú</footer>
+
+<script>
+/* -------------------- Fade when scroll -------------------- */
+const card = document.getElementById("card");
+function checkFade() {
+    const pos = card.getBoundingClientRect().top;
+    if (pos < window.innerHeight - 120) card.classList.add("show");
+}
+window.addEventListener("scroll", checkFade);
+window.addEventListener("load", checkFade);
+
+/* -------------------- Auto play nhạc + toggle -------------------- */
+const bgm = document.getElementById("bgm");
+window.addEventListener("load", () => {
+    bgm.volume = 0.4;
+    bgm.play().catch(() => {});
+});
+function toggleMusic() {
+    if (bgm.paused) bgm.play();
+    else bgm.pause();
+}
+
+/* -------------------- Sparkles follow mouse -------------------- */
+document.addEventListener("mousemove", e => {
+    const sparkle = document.createElement("span");
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+    sparkle.classList.add("spark");
+    document.getElementById("sparkles").appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 800);
+});
+</script>
+
+</body>
+</html>
