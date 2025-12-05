@@ -1,136 +1,238 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giới thiệu - Minh Tú</title>
-  <style>
-    :root {
-      --bg: #f3f4f6;
-      --card: #ffffff;
-      --primary: #2563eb;
-      --secondary: #1e40af;
-      --text: #111827;
-      --muted: #6b7280;
-    }
-    * { box-sizing: border-box; }
-    body {
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      padding: 48px 20px;
-      text-align: center;
-    }
-    header h1 { font-size: 36px; margin: 0 0 10px; }
-    header p { font-size: 16px; margin: 0; opacity: 0.9; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trang cá nhân — Minh Tú</title>
 
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-    }
+<style>
+/* ------------------------------------ GLOBAL ------------------------------------ */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: #4b2d75;
+    min-height: 100vh;
+    overflow-x: hidden;
 
-    .left {
-      flex: 1 1 280px;
-      background: #eef2ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-    }
+    /* Gradient đổi màu liên tục */
+    background: linear-gradient(135deg, #faf5ff, #f3e8ff, #fdf4ff);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
 
-    .avatar {
-      width: 260px;
-      height: 260px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 5px solid rgba(255,255,255,0.6);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+header {
+    padding: 50px 20px 20px;
+    position: relative;
+    z-index: 3;
+}
+header img.icon {
+    width: 90px;
+}
+h1 {
+    font-size: 36px;
+    margin: 12px 0 0;
+}
+.subtitle {
+    opacity: 0.8;
+    margin-top: 4px;
+}
 
-    .right {
-      flex: 2 1 320px;
-      padding: 30px 40px;
-    }
-    .right h2 {
-      margin: 0 0 8px;
-      font-size: 26px;
-    }
-    .right .meta {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
+/* ------------------------------------ SPARKLE BACKGROUND ------------------------------------ */
+.sparkles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+.sparkles span {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(1px);
+}
 
-    .about {
-      background: #f9fafb;
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      min-height: 120px;
-    }
+/* ------------------------------------ CARD ------------------------------------ */
+.card {
+    width: 90%;
+    max-width: 750px;
+    margin: 40px auto;
+    background: #ffffffcc;
+    padding: 30px 40px 40px;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    backdrop-filter: blur(8px);
 
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    /* Fade-up */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: .9s ease;
+}
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    @media(max-width: 720px){
-      .right { padding: 20px; }
-      header h1 { font-size: 28px; }
-    }
-  </style>
+/* ------------------------------------ AVATAR ------------------------------------ */
+.avatar {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+
+    /* Neon tím + hiệu ứng nhịp */
+    box-shadow: 
+        0 0 12px #c084fc,
+        0 0 20px #d8b4fe,
+        0 0 40px #e9d5ff;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 10px #d8b4fe, 0 0 25px #c084fc; }
+    50% { box-shadow: 0 0 25px #e9d5ff, 0 0 45px #d8b4fe; }
+    100% { box-shadow: 0 0 10px #d8b4fe, 0 0 25px #c084fc; }
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------------ BUTTON ------------------------------------ */
+.play-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b2d75;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+    transition: 0.25s ease;
+}
+.play-btn:hover {
+    transform: scale(1.08);
+}
+
+/* ------------------------------------ MENU ------------------------------------ */
+.navbar {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.navbar button {
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: #f3e8ff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #5b318f;
+    transition: .25s;
+}
+.navbar button:hover {
+    background: #e9d5ff;
+    transform: scale(1.06);
+}
+
+/* ------------------------------------ FOOTER ------------------------------------ */
+footer {
+    text-align: center;
+    margin: 40px 0;
+    opacity: .7;
+}
+</style>
 </head>
 
+
+
 <body>
-  <header>
+
+<!-- Hạt sáng -->
+<div class="sparkles" id="sparkles"></div>
+
+<header>
+    <img src="plant.png" class="icon">
     <h1>Giới thiệu bản thân</h1>
-    <p>Trang cá nhân của Võ Nguyễn Minh Tú</p>
-  </header>
+    <p class="subtitle">Trang cá nhân của Võ Nguyễn Minh Tú</p>
+</header>
 
-  <div class="container">
-    <div class="card">
-      <div class="left">
-        <div class="avatar">
-          <img src="https://github.com/minhtuvonguyen-collab/MinhTuProfile.github-io/blob/main/z7266046669069_8ee11924eac3c8593f8d8db1b2f4a8ef.jpg" alt="Ảnh cá nhân">
-        </div>
-      </div>
-
-      <div class="right">
-        <h2>Minh Tú</h2>
-        <div class="meta">Học sinh lớp 12 Anh — THPT Chuyên Bến Tre</div>
-
-        <div class="about">
-          <p>
-            Xin chào! Mình là <strong>Minh Tú</strong>, hiện là học sinh lớp 12 Anh tại trường THPT Chuyên Bến Tre.
-            Đây sẽ là nơi mình chia sẻ đôi nét về bản thân để mọi người hiểu hơn về mình.
-          </p>
-        </div>
-      </div>
+<div class="card" id="card">
+    <div class="avatar">
+        <img src="z7266046669069_8ee11924eac3c8593f8d8db1b2f4a8ef.jpg">
     </div>
-  </div>
 
-  <footer>© 2025 — Trang cá nhân của Minh Tú</footer>
+    <h2 style="margin-top:18px;">Minh Tú</h2>
+    <p><i>Học sinh lớp 12 Anh — THPT Chuyên Bến Tre</i></p>
+
+    <p style="margin-top:22px;">
+        Xin chào! Mình là <b>Minh Tú</b>.  
+        Mình yêu thích học hỏi, khám phá và lan toả năng lượng tích cực đến mọi người.
+    </p>
+
+    <!-- NÚT NHẠC -->
+    <button class="play-btn" onclick="toggleMusic()">🎵 Nhạc nền</button>
+
+    <audio id="bgm" loop>
+        <source src="Aloha, Cool (English Cover).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MENU -->
+    <div class="navbar">
+        <button onclick="alert('Trang đang phát triển ❤️')">🌸 Trang chủ</button>
+        <button onclick="alert('Mục Sở thích đang cập nhật')">⭐ Sở thích</button>
+        <button onclick="alert('Mục Liên hệ đang cập nhật')">📮 Liên hệ</button>
+    </div>
+</div>
+
+<footer>© 2025 — Trang cá nhân của Minh Tú</footer>
+
+<script>
+/* -------------------- Fade when scroll -------------------- */
+const card = document.getElementById("card");
+function checkFade() {
+    const pos = card.getBoundingClientRect().top;
+    if (pos < window.innerHeight - 120) card.classList.add("show");
+}
+window.addEventListener("scroll", checkFade);
+window.addEventListener("load", checkFade);
+
+/* -------------------- Auto play nhạc + toggle -------------------- */
+const bgm = document.getElementById("bgm");
+window.addEventListener("load", () => {
+    bgm.volume = 0.4;
+    bgm.play().catch(() => {});
+});
+function toggleMusic() {
+    if (bgm.paused) bgm.play();
+    else bgm.pause();
+}
+
+/* -------------------- Sparkles follow mouse -------------------- */
+document.addEventListener("mousemove", e => {
+    const sparkle = document.createElement("span");
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+    sparkle.classList.add("spark");
+    document.getElementById("sparkles").appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 800);
+});
+</script>
+
 </body>
 </html>
